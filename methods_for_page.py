@@ -1,4 +1,6 @@
-import time
+
+# в данном модуле содержатся функции для скрепинга
+
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -10,6 +12,9 @@ from table_vals import *
 from selenium.webdriver.support.ui import WebDriverWait as W
 from selenium.webdriver.support import expected_conditions as E
 from tqdm import tqdm
+
+# модуль xpaths_ содержит х-пути для радио-баттонов
+# модуль table_vals  содержит значения для заполнения таблицы после крепинга
 
 # функция получения цены
 def get_price(driver):
@@ -67,7 +72,7 @@ def set_combination( driver, bit_string_ ):
             radio_button.click()
     return None
 
-
+# функция инициализации веб-драйвера и перехода на нужный сайт
 def create_driver( ):
     URL = "https://www.onebook.ru/help/calculators/"
 
@@ -81,6 +86,10 @@ def create_driver( ):
     time.sleep(3)
     return driver
 
+# функция скрепинга информации с сайта
+# на вход подается драйвер driver с открытым сайтом и массив чисел Numbers_,
+# которые конвертируются в битовую строку -
+# положение радиобаттонов на сайте
 def scrap_inf( Numbers_ , driver):
 
     pages = [ i for i in range(20 , 1001,20 ) ]
